@@ -8,7 +8,7 @@ URL_lists = data.frame()
 
 URL_HisLists = data.frame()
 
-for(i in 1:2){ #page crawler 
+for(i in 1:19){ #page crawler 
   
   url <- 'http://class.ruten.com.tw/category/sub00.php?c=00110022&p='
   
@@ -25,7 +25,7 @@ for(i in 1:2){ #page crawler
     URL_HisLists <- paste0(URL_lists,history)
   
   }
-  #Sys.sleep(runif(1,2,4))
+  Sys.sleep(runif(1,2,4))
 }  
 
 URL_HisLists <- as.character(URL_HisLists)
@@ -121,22 +121,6 @@ for(i in 1:length(URL_lists)){
         finalData <- rbind(finalData,rutenCrawler_OK(i))
     }
     
-    #Sys.sleep(runif(1,2,5))  
+    Sys.sleep(runif(1,2,5))  
 }
-
-
-
-ruten_url <- 'http://goods.ruten.com.tw/item/show?21408018125710#history&p=1'
-
-session <- GET((ruten_url),add_headers('user-agent' = 'uagent'))
-
-CMask <- read_html(session) %>% 
-
-  html_nodes(xpath='//*[@class="count"]') %>% 
-  
-  html_text() %>% .[2]
-
-test2 <- read_html(session) %>% 
-  
-  html_nodes(".rt-text-parentesis")
 
